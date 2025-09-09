@@ -2,23 +2,20 @@ package com.quickpos.quickposbackend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
-@NoArgsConstructor
-@Setter
+@Table(name = "auth_tokens")
 @Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
+public class AuthToken {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String username;
-    private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
+    private String token;
+    private LocalDateTime expiryDate;
 }
