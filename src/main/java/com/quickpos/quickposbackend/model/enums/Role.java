@@ -1,4 +1,4 @@
-package com.quickpos.quickposbackend.model;
+package com.quickpos.quickposbackend.model.enums;
 
 public enum Role {
     ADMIN,

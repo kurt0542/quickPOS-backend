@@ -1,6 +1,6 @@
 package com.quickpos.quickposbackend.service;
 
-import com.quickpos.quickposbackend.model.Role;
+import com.quickpos.quickposbackend.model.enums.Role;
 import com.quickpos.quickposbackend.model.User;
 import com.quickpos.quickposbackend.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;

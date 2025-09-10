@@ -1,5 +1,6 @@
 package com.quickpos.quickposbackend.model;
 
+import com.quickpos.quickposbackend.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
