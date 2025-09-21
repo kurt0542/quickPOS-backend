@@ -4,16 +4,13 @@ import com.quickpos.quickposbackend.model.User;
 import com.quickpos.quickposbackend.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AuthController {
     @Autowired
     private AuthService authService;
-    @PostMapping
+    @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody User user){
         try{
             User createdUser = authService.signup(user);
@@ -22,7 +19,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    @GetMapping
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user){
         try{
             User loggedInUser = authService.login(user.getUsername(), user.getPassword());
