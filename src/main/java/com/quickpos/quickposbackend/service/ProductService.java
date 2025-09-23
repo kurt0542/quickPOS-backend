@@ -32,6 +32,8 @@ public class ProductService {
                     existing.setName(newProductData.getName());
                     existing.setCategory(newProductData.getCategory());
                     existing.setPrice(newProductData.getPrice());
+                    existing.setImageUrl(newProductData.getImageUrl());
+                    existing.setAllergen(newProductData.getAllergen());
                     existing.setSalesCount(newProductData.getSalesCount());
                     return productRepo.save(existing);
                 }).orElseThrow(() -> new RuntimeException("Product not found"));
