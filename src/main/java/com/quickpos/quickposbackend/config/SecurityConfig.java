@@ -18,10 +18,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/signup", "/login").permitAll()
+                        .requestMatchers("/signup", "/login","/products/add").permitAll()
                         .anyRequest().authenticated()
                 )
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())); // <-- Spring 6 style
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         return http.build();
     }

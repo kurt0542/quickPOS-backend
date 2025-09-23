@@ -24,6 +24,6 @@ public class Product {
 
     private String allergen;
 
-    private Integer salesCount;
+    private Integer salesCount = 0;
 
 }
