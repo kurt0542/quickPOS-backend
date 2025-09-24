@@ -30,7 +30,7 @@ public class ImageService {
         Path filePath = uploadPath.resolve(safeFilename).normalize();
         Files.write(filePath, file.getBytes());
 
-        return "/images/" + safeFilename;
+        return "/uploads/images/" + safeFilename;
     }
 
 }

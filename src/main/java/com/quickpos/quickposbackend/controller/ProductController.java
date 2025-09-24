@@ -22,7 +22,7 @@ public class ProductController {
     private final ProductService productService;
     private final ImageService imageService;
     private final ObjectMapper objectMapper;
-    @GetMapping
+    @GetMapping("/getAllProducts")
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         if (products.isEmpty()) return ResponseEntity.noContent().build();
