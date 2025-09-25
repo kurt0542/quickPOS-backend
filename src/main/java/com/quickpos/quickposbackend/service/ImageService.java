@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 @NoArgsConstructor
 public class ImageService {
-
+    private static final String UPLOAD_DIR = "uploads/images";
     public String saveImage(MultipartFile file) throws IOException {
         if (file.isEmpty()) throw new IOException("File is empty");
 
@@ -33,4 +33,11 @@ public class ImageService {
         return "/uploads/images/" + safeFilename;
     }
 
+    public void deleteImage(String imageUrl) throws IOException{
+        if(imageUrl != null && !imageUrl.isBlank()){
+            String filename = Paths.get(imageUrl).getFileName().toString();
+            Path filePath = Paths.get(UPLOAD_DIR, filename);
+            Files.deleteIfExists(filePath);
+        }
+    }
 }
