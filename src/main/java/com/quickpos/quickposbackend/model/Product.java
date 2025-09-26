@@ -24,6 +24,10 @@ public class Product {
 
     private String allergen;
 
+    private boolean hasSugarOption;
+    private boolean hasIceOption;
+    private boolean hasCupSizeOption;
+
     private Integer salesCount = 0;
 
 }

@@ -49,6 +49,9 @@ public class ProductController {
         product.setPrice(node.get("price").asDouble());
         product.setAllergen(node.get("allergen").asText());
         product.setSalesCount(0);
+        product.setHasSugarOption(node.get("hasSugarOption").asBoolean(false));
+        product.setHasIceOption(node.get("hasIceOption").asBoolean(false));
+        product.setHasCupSizeOption(node.get("hasCupSizeOption").asBoolean(false));
         product.setId(null);
 
         if (file != null && !file.isEmpty()) {
