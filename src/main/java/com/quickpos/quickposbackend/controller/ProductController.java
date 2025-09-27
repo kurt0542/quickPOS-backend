@@ -22,6 +22,7 @@ public class ProductController {
     private final ProductService productService;
     private final ImageService imageService;
     private final ObjectMapper objectMapper;
+
     @GetMapping("/getAllProducts")
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
@@ -38,7 +39,7 @@ public class ProductController {
 
     @PostMapping("/add")
     public ResponseEntity<Product> addProduct(
-           @RequestParam("product") String productJson,
+            @RequestParam("product") String productJson,
             @RequestParam(value = "file", required = false) MultipartFile file
     ) throws IOException {
 
@@ -65,10 +66,24 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id,
-                                                 @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(
+            @PathVariable Long id,
+            @RequestParam("product") String productJson,
+            @RequestParam(value = "file", required = false) MultipartFile file
+    ) throws IOException {
+        JsonNode node = objectMapper.readTree(productJson);
+        Product product = new Product();
+        product.setName(node.get("name").asText());
+        product.setCategory(ProductCategory.valueOf(node.get("category").asText()));
+        product.setPrice(node.get("price").asDouble());
+        product.setAllergen(node.get("allergen").asText());
+        product.setHasSugarOption(node.get("hasSugarOption").asBoolean(false));
+        product.setHasIceOption(node.get("hasIceOption").asBoolean(false));
+        product.setHasCupSizeOption(node.get("hasCupSizeOption").asBoolean(false));
+
         try {
-            return ResponseEntity.ok(productService.updateProduct(id, product));
+            Product updated = productService.updateProduct(id, product, file);
+            return ResponseEntity.ok(updated);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
