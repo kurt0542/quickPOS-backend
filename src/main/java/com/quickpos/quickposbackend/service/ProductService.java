@@ -36,7 +36,6 @@ public class ProductService {
         return productRepo.findById(id)
                 .map(existing -> {
                     existing.setName(newProductData.getName());
-                    existing.setCategory(newProductData.getCategory());
                     existing.setPrice(newProductData.getPrice());
                     existing.setAllergen(newProductData.getAllergen());
                     existing.setSalesCount(newProductData.getSalesCount());

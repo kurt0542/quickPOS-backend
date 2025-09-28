@@ -74,7 +74,6 @@ public class ProductController {
         JsonNode node = objectMapper.readTree(productJson);
         Product product = new Product();
         product.setName(node.get("name").asText());
-        product.setCategory(ProductCategory.valueOf(node.get("category").asText()));
         product.setPrice(node.get("price").asDouble());
         product.setAllergen(node.get("allergen").asText());
         product.setHasSugarOption(node.get("hasSugarOption").asBoolean(false));
