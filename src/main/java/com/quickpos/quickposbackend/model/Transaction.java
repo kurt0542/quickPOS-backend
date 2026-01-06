@@ -6,6 +6,7 @@ import lombok.*;
 import com.quickpos.quickposbackend.model.enums.TransactionStatus;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "transactions")
@@ -24,6 +25,8 @@ public class Transaction {
 
     @ManyToOne
     private User Employee;
+    @OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
